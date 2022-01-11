@@ -1,0 +1,11 @@
+Removed Pin From Net: NetName=ESP_SW1 Pin=U1-9
+Removed Pin From Net: NetName=ESP_SW5 Pin=U1-26
+Removed Pin From Net: NetName=ESP_SW2 Pin=U1-27
+Removed Pin From Net: NetName=ESP_SW3 Pin=U1-28
+Removed Pin From Net: NetName=ESP_SW4 Pin=U1-29
+Added Pin To Net: NetName=ESP_SW2 Pin=U1-17
+Added Pin To Net: NetName=ESP_SW1 Pin=U1-18
+Added Pin To Net: NetName=ESP_SW3 Pin=U1-19
+Added Pin To Net: NetName=ESP_SW4 Pin=U1-20
+Added Pin To Net: NetName=ESP_SW5 Pin=U1-21
+Added Member To Class: ClassName=Sheet1 Member=Component P8 Header 4

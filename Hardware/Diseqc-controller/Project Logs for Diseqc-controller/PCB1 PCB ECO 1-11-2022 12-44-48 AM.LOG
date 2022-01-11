@@ -1,0 +1,11 @@
+Change Component Designator: OldDesignator=C7 NewDesignator=D5
+Change Component Designator: OldDesignator=C9 NewDesignator=D6
+Change Component Designator: OldDesignator=C10 NewDesignator=D7
+Change Component Designator: OldDesignator=C11 NewDesignator=D8
+Change Component Designator: OldDesignator=C12 NewDesignator=D9
+Change Net Name : Old Net Name=NetC7_2 New Net Name=NetD5_2
+Change Net Name : Old Net Name=NetC9_2 New Net Name=NetD6_2
+Change Net Name : Old Net Name=NetC10_2 New Net Name=NetD7_2
+Change Net Name : Old Net Name=NetC11_2 New Net Name=NetD8_2
+Change Net Name : Old Net Name=NetC12_2 New Net Name=NetD9_2
+Added Member To Class: ClassName=Sheet1 Member=Component P8 Header 4
