@@ -141,6 +141,10 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=EYOKSONO
 
+[GeneratedDocument1]
+DocumentPath=Project Outputs for Diseqc-controller\Design Rule Check - PCB1.html
+DItemRevisionGUID=
+
 [Configuration1]
 Name=Sources
 ParameterCount=0
