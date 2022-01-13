@@ -1,0 +1,15 @@
+Removed Pin From Net: NetName=SCL_ESP Pin=R3-2
+Removed Pin From Net: NetName=SDA_ESP Pin=R4-2
+Removed Pin From Net: NetName=ESP_SW1 Pin=U1-17
+Removed Pin From Net: NetName=ESP_SW2 Pin=U1-18
+Removed Pin From Net: NetName=AZ_PIN Pin=U1-33
+Removed Pin From Net: NetName=SDA_ESP Pin=U1-37
+Added Pin To Net: NetName=SDA_ESP Pin=R3-2
+Added Pin To Net: NetName=SCL_ESP Pin=R4-2
+Added Pin To Net: NetName=ESP_SW1 Pin=U1-11
+Added Pin To Net: NetName=ESP_SW2 Pin=U1-12
+Added Pin To Net: NetName=SDA_ESP Pin=U1-33
+Added Pin To Net: NetName=AZ_PIN Pin=U1-37
+Added Member To Class: ClassName=Sheet1 Member=Component D5 LED
+Added Member To Class: ClassName=Sheet1 Member=Component D7 LED
+Added Member To Class: ClassName=Sheet1 Member=Component D8 LED
