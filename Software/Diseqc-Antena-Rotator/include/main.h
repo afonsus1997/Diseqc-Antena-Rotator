@@ -15,4 +15,7 @@ int initSPIFFS();
 /*BOARD AND IO INCLUDES*/
 #include "boardpins.h"
 
+extern void initOLED();
+extern void menuLoop();
+
 #endif
