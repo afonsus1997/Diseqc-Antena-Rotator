@@ -111,7 +111,7 @@ void setup() {
   initWifi(ssid, password, 0);
   // initWebServer(); 
   // initOLED();
-  init_tracker();
+  // init_tracker();
 
 }
 
