@@ -107,17 +107,16 @@ void initIO(){
 
 void setup() {
   Serial.begin(115200);
-  Serial.println("Menu 4.x");
-  Serial.println("Use keys + - * /");
-  Serial.println("to control the menu navigation");
   initSPIFFS();
   initWifi(ssid, password, 0);
-  initWebServer(); 
-  initOLED();
+  // initWebServer(); 
+  // initOLED();
+  init_tracker();
+
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  menuLoop();
+  // menuLoop();
   delay(100);//simulate other tasks delay
 }

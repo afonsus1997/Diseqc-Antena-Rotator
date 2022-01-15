@@ -9,6 +9,7 @@
 #include <WiFiAP.h>
 #include <AsyncTCP.h>
 #include <ESPAsyncWebServer.h>
+#include <HTTPClient.h>
 
 #include "wifi_credentials.h"
 

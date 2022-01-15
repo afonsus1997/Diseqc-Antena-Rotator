@@ -17,5 +17,6 @@ int initSPIFFS();
 
 extern void initOLED();
 extern void menuLoop();
+extern void init_tracker(); 
 
 #endif

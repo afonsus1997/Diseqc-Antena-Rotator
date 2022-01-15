@@ -1,0 +1,85 @@
+Removed Pin From Net: NetName=ESP_SW1 Pin=U1-11
+Removed Pin From Net: NetName=ESP_SW2 Pin=U1-12
+Added Component: Designator=R31(C 0603 / 1608)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=R32(C 0603 / 1608)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageDescription"; Value = "Axial Device, Thru-Hole; 2 Leads; 0.3 in Pin Spacing"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "PackageReference"; Value = "AXIAL-0.3"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Published"; Value = "8-Jun-2000"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = "4.7k"; VariantName = "[No Variations]"
+Added Component: Designator=S2(DTSM-6)
+Added Component: Designator=S3(DTSM-6)
+Added Component: Designator=S4(DTSM-6)
+Added Component: Designator=S5(DTSM-6)
+Added Component: Designator=S6(DTSM-6)
+Added Component: Designator=SJ1(SOLDERJUMPER_2WAY_OPEN_NOPASTE)
+Added Component: Designator=SJ2(SOLDERJUMPER_2WAY_OPEN_NOPASTE)
+Added Component: Designator=U6(DS1307)
+Added Pin To Net: NetName=VCC3V3 Pin=P5-1
+Added Pin To Net: NetName=VCC3V3 Pin=R31-1
+Added Pin To Net: NetName=VCC3V3 Pin=R32-1
+Added Pin To Net: NetName=ESP_SW1 Pin=S2-3
+Added Pin To Net: NetName=ESP_SW1 Pin=S2-4
+Added Pin To Net: NetName=ESP_SW2 Pin=S3-3
+Added Pin To Net: NetName=ESP_SW2 Pin=S3-4
+Added Pin To Net: NetName=ESP_SW3 Pin=S4-3
+Added Pin To Net: NetName=ESP_SW3 Pin=S4-4
+Added Pin To Net: NetName=ESP_SW4 Pin=S5-3
+Added Pin To Net: NetName=ESP_SW4 Pin=S5-4
+Added Pin To Net: NetName=ESP_SW5 Pin=S6-3
+Added Pin To Net: NetName=ESP_SW5 Pin=S6-4
+Added Pin To Net: NetName=SDA_ESP Pin=SJ1-3
+Added Pin To Net: NetName=SCL_ESP Pin=SJ2-3
+Added Pin To Net: NetName=ESP_SW2 Pin=U1-9
+Added Pin To Net: NetName=ESP_SW1 Pin=U1-10
+Added Pin To Net: NetName=GND Pin=U6-2
+Added Pin To Net: NetName=GND Pin=U6-2
+Added Pin To Net: NetName=NetR31_2 Pin=R31-2
+Added Pin To Net: NetName=NetR31_2 Pin=SJ1-2
+Added Pin To Net: NetName=NetR31_2 Pin=U6-4
+Added Pin To Net: NetName=NetR31_2 Pin=U6-4
+Added Net: Name=NetR31_2
+Added Pin To Net: NetName=NetR32_2 Pin=R32-2
+Added Pin To Net: NetName=NetR32_2 Pin=SJ2-2
+Added Pin To Net: NetName=NetR32_2 Pin=U6-5
+Added Pin To Net: NetName=NetR32_2 Pin=U6-5
+Added Net: Name=NetR32_2
+Added Pin To Net: NetName=NetS2_1 Pin=S2-1
+Added Pin To Net: NetName=NetS2_1 Pin=S2-2
+Added Pin To Net: NetName=NetS2_1 Pin=S3-1
+Added Net: Name=NetS2_1
+Added Pin To Net: NetName=NetS3_2 Pin=S3-2
+Added Pin To Net: NetName=NetS3_2 Pin=S4-1
+Added Net: Name=NetS3_2
+Added Pin To Net: NetName=NetS4_2 Pin=S4-2
+Added Pin To Net: NetName=NetS4_2 Pin=S5-1
+Added Net: Name=NetS4_2
+Added Pin To Net: NetName=NetS5_2 Pin=S5-2
+Added Pin To Net: NetName=NetS5_2 Pin=S6-1
+Added Pin To Net: NetName=NetS5_2 Pin=S6-2
+Added Net: Name=NetS5_2
+Added Pin To Net: NetName=SCL_ESP1 Pin=SJ2-1
+Added Pin To Net: NetName=SCL_ESP1 Pin=U1-11
+Added Net: Name=SCL_ESP1
+Added Pin To Net: NetName=SDA_ESP1 Pin=SJ1-1
+Added Pin To Net: NetName=SDA_ESP1 Pin=U1-12
+Added Net: Name=SDA_ESP1
+Added Member To Class: ClassName=Sheet1 Member=Component R31 Res1
+Added Member To Class: ClassName=Sheet1 Member=Component R32 Res1
+Added Member To Class: ClassName=Sheet1 Member=Component S2 DTSM-6
+Added Member To Class: ClassName=Sheet1 Member=Component S3 DTSM-6
+Added Member To Class: ClassName=Sheet1 Member=Component S4 DTSM-6
+Added Member To Class: ClassName=Sheet1 Member=Component S5 DTSM-6
+Added Member To Class: ClassName=Sheet1 Member=Component S6 DTSM-6
+Added Member To Class: ClassName=Sheet1 Member=Component SJ1 2-Way Solder Jumper
+Added Member To Class: ClassName=Sheet1 Member=Component SJ2 2-Way Solder Jumper
+Added Member To Class: ClassName=Sheet1 Member=Component U6 DS1307

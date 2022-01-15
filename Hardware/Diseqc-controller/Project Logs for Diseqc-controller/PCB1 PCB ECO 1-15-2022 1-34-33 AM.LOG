@@ -1,0 +1,33 @@
+Removed Pin From Net: NetName=ESP_SW1 Pin=S2-3
+Removed Pin From Net: NetName=ESP_SW1 Pin=S2-4
+Removed Pin From Net: NetName=ESP_SW2 Pin=S3-3
+Removed Pin From Net: NetName=ESP_SW2 Pin=S3-4
+Removed Pin From Net: NetName=ESP_SW3 Pin=S4-3
+Removed Pin From Net: NetName=ESP_SW3 Pin=S4-4
+Removed Pin From Net: NetName=ESP_SW4 Pin=S5-3
+Removed Pin From Net: NetName=ESP_SW4 Pin=S5-4
+Removed Pin From Net: NetName=ESP_SW5 Pin=S6-3
+Removed Pin From Net: NetName=ESP_SW5 Pin=S6-4
+Removed Pin From Net: NetName=GND Pin=U6-2
+Removed Pin From Net: NetName=GND Pin=U6-2
+Removed Member From Class: ClassName=Sheet1 Member=S2
+Removed Member From Class: ClassName=Sheet1 Member=S3
+Removed Member From Class: ClassName=Sheet1 Member=S4
+Removed Member From Class: ClassName=Sheet1 Member=S5
+Removed Member From Class: ClassName=Sheet1 Member=S6
+Removed Member From Class: ClassName=Sheet1 Member=U6
+Added Component: Designator=P7(HDR1X5)
+Add component (AddParameter): Name = "LatestRevisionDate"; Value = "17-Jul-2002"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "LatestRevisionNote"; Value = "Re-released for DXP Platform."; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Publisher"; Value = "Altium Limited"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC3V3 Pin=P7-1
+Added Pin To Net: NetName=GND Pin=P7-5
+Added Pin To Net: NetName=NetP7_2 Pin=P7-2
+Added Pin To Net: NetName=NetP7_2 Pin=R31-2
+Added Pin To Net: NetName=NetP7_2 Pin=SJ1-2
+Added Net: Name=NetP7_2
+Added Pin To Net: NetName=NetP7_3 Pin=P7-3
+Added Pin To Net: NetName=NetP7_3 Pin=R32-2
+Added Pin To Net: NetName=NetP7_3 Pin=SJ2-2
+Added Net: Name=NetP7_3
+Added Member To Class: ClassName=Sheet1 Member=Component P7 Header 5

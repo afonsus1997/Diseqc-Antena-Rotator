@@ -1,0 +1,4 @@
+Removed Pin From Net: NetName=NetP7_2 Pin=R31-2
+Removed Pin From Net: NetName=NetP7_3 Pin=R32-2
+Added Pin To Net: NetName=SDA_ESP1 Pin=R31-2
+Added Pin To Net: NetName=SCL_ESP1 Pin=R32-2
