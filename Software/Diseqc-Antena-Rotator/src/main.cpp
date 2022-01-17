@@ -110,13 +110,13 @@ void setup() {
   initSPIFFS();
   initWifi(ssid, password, 0);
   // initWebServer(); 
-  // initOLED();
+  initOLED();
   // init_tracker();
 
 }
 
 void loop() {
   // put your main code here, to run repeatedly:
-  // menuLoop();
+  menuLoop();
   delay(100);//simulate other tasks delay
 }

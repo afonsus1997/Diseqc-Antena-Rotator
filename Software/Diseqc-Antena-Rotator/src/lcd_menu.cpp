@@ -1,5 +1,7 @@
 #include "../include/lcd_menu.h"
 
+extern uint8_t min_el;
+
 #define fontName u8g2_font_7x13_mf
 #define fontX 7
 #define fontY 16
@@ -34,16 +36,49 @@ result optest(){Serial.println("done!\n");return proceed;}
 result doAlert(eventMask e, prompt &item);
 
 
-int wifi_mode_set_menu=1;
+int wifi_mode_set_menu=0;
 CHOOSE(wifi_mode_set_menu,chooseWifiMenu,"Wifi Mode",doNothing,noEvent,noStyle
-  ,VALUE("Wifi AP",1,doNothing,noEvent)
-  ,VALUE("WIFI B",2,doNothing,noEvent)
+  ,VALUE("Wifi AP",0,doNothing,noEvent)
+  ,VALUE("WIFI B",1,doNothing,noEvent)
 );
 
 
 MENU(wifi_submenu,"Wifi Settings",doNothing,noEvent,noStyle
   ,SUBMENU(chooseWifiMenu)
   ,OP("Check IP",doAlert,enterEvent)
+  ,EXIT("<Back")
+);
+
+int8_t el_offset = 0;
+int8_t az_offset = 0;
+
+
+MENU(rotator_ctrl_submenu,"Rotator control",doNothing,noEvent,noStyle
+  ,OP("Park antenna", doNothing, noEvent)
+  ,FIELD(el_offset,"El offset"," deg", -90,90,1,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(az_offset,"Az offset"," deg", 0,90,1,5, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,EXIT("<Back")
+);
+
+
+uint16_t predict_sat_catn=0;
+CHOOSE(predict_sat_catn,choose_track_sat_menu,"Choose sat",doNothing,noEvent,noStyle
+  ,VALUE("NOAA 15",NOAA15_CATN,doNothing,noEvent)
+  ,VALUE("NOAA 18",NOAA18_CATN,doNothing,noEvent)
+  ,VALUE("NOAA 19",NOAA19_CATN,doNothing,noEvent)
+  ,VALUE("ISS",ISS_CATN,doNothing,noEvent)
+);
+
+uint8_t n_predictions;
+
+
+result menu_predict();
+
+MENU(predictor_submenu,"Prediction engine",doNothing,noEvent,noStyle
+  ,SUBMENU(choose_track_sat_menu)
+  ,FIELD(min_el,"Min el"," deg", 0,90,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(n_predictions,"N predictions","", 0,10,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,OP("Predict!", menu_predict, enterEvent)
   ,EXIT("<Back")
 );
 
@@ -55,6 +90,8 @@ MENU(mainMenu, "Main menu"\
     ,wrapStyle
     ,OP("Op1", optest, enterEvent)
     ,OP("Op2", doNothing, noEvent)
+    ,SUBMENU(rotator_ctrl_submenu)
+    ,SUBMENU(predictor_submenu)
     ,SUBMENU(wifi_submenu)
     ,EXIT("<Exit"));
 
@@ -67,6 +104,22 @@ MENU_INPUTS(in, &serial);
 MENU_OUTPUTS(out, MAX_DEPTH, U8G2_OUT(u8g2, colors, fontX, fontY, offsetX, offsetY, {0, 0, U8_Width / fontX, U8_Height / fontY}), SERIAL_OUT(Serial));
 
 NAVROOT(nav, mainMenu, MAX_DEPTH, in, out);
+
+result show_prediction(menuOut &o, idleEvent e){
+    o.setCursor(0, 0);
+    o.print("asdasdasd");
+    return proceed;
+}
+
+result menu_predict(){
+    uint8_t i;
+    for(i = 0; i<3; i++){
+        nav.idleOn(show_prediction);
+        // delay(100);  
+    }
+    
+    return proceed;
+    }
 
 result alert(menuOut &o, idleEvent e)
 {
@@ -129,14 +182,21 @@ void initOLED()
     Wire.begin();
     u8g2.begin();
     u8g2.setFont(fontName);
+    
 }
 
 void menuLoop(){
     nav.doInput();
   // digitalWrite(LEDPIN, ledCtrl);
-  if (nav.changed(0)) {//only draw if menu changed for gfx device
+    if (nav.changed(0)) {//only draw if menu changed for gfx device
     //change checking leaves more time for other tasks
-    u8g2.firstPage();
-    do nav.doOutput(); while(u8g2.nextPage());
+        u8g2.firstPage();
+        do nav.doOutput(); while(u8g2.nextPage());
+
+  }
+  if (nav.sleepTask) {
+    u8g2.setCursor(10,10);
+    u8g2.print("Status screen");
+    u8g2.nextPage();
   }
 }

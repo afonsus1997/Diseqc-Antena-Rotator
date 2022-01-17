@@ -9,6 +9,8 @@ char satname[70];// = "ISS (ZARYA)";
 char tle1[70];// = "1 25544U 98067A   22014.70787037  .00006419  00000-0  12245-3 0  9995"; //Line one from the TLE data
 char tle2[70];// = "2 25544  51.6456  16.6326 0006618  22.6213 315.8466 15.49492476321370"; //Line two from the TLE data
 
+uint8_t min_el = 10;
+
 Sgp4 sat;
 unsigned long unixtime = 1642196974;
 int timezone = 0; //utc + 0

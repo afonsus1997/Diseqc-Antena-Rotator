@@ -143,11 +143,9 @@ int initWifi(char *ssid, char *password, uint16_t mode)
     // file.print('\n');
     // file.close();
     initTLEs();
-    getTLE("33591");
-    getTLE("25338");
-    getTLE("43013");
-
-     
-
+    // getTLE("33591");
+    // getTLE("25338");
+    // getTLE("43013");
+    // getTLE("25544");
 
 }
