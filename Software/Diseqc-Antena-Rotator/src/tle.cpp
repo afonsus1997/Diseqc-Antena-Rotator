@@ -1,14 +1,8 @@
 #include "../include/tle.h"
 
-#define N_MAX_TLE 10
 
 
-typedef struct tle_s {
-   String satname;
-   uint16_t CATNR;
-   String tle1;
-   String tle2; 
-} tle_t; 
+
 
 tle_t satList[N_MAX_TLE];
 uint8_t n_LoadedTLEs;
@@ -107,6 +101,17 @@ uint8_t get_tles_from_file(){
     return i;
 }
 
+uint8_t getSatIndex(uint16_t CATNR){
+    uint8_t i;
+    for(i = 0; i<N_MAX_TLE; i++){
+        Serial.println(satList[i].CATNR);
+        if(satList[i].CATNR == CATNR){
+            Serial.println("found it");
+            return i;
+        }
+    }
+    return 0;
+}
 
 
 

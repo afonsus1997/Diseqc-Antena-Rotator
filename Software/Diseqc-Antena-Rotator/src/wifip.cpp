@@ -96,6 +96,7 @@ int initWebServer()
     return 1;
 }
 
+
 int initWifi(char *ssid, char *password, uint16_t mode)
 {
     Serial.print("Initializing Wifi...");

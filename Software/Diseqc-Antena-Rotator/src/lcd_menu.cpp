@@ -1,24 +1,26 @@
 #include "../include/lcd_menu.h"
 
 extern uint8_t min_el;
+extern void predict_eng_init_menu(uint16_t CATN);
+extern void predict_eng_show_menu(int many, int minEl);
+extern uint8_t getSatIndex(uint16_t CATNR);
 
 #define fontName u8g2_font_7x13_mf
-#define fontX 7
-#define fontY 16
+
 #define offsetX 0
 #define offsetY 0
 #define U8_Width 128
 #define U8_Height 64
 #define USE_HWI2C
 // U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R0);//, SCL, SDA);
-// U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R2, U8X8_PIN_NONE, 4, 5);
-// U8G2_SSD1306_128X64_VCOMH0_F_HW_I2C u8g2(U8G2_R2, U8X8_PIN_NONE, 4, 5);
-U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, LCD_SCL, LCD_SDA);
+// U8G2_SSD1306_128X64_NONAME_F_HW_I2C u8g2(U8G2_R2, U8X8_PIN_NONE, 22, 21);
+U8G2_SSD1306_128X64_VCOMH0_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, 22, 21);
+// U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R2, U8X8_PIN_NONE, LCD_SCL, LCD_SDA);
+
 
 #define USE_SSD1306
 using namespace Menu;
 #define LEDPIN LED_BUILTIN
-
 const colorDef<uint8_t> colors[6] MEMMODE = {
     {{0, 0}, {0, 1, 1}}, //bgColor
     {{1, 1}, {1, 0, 0}}, //fgColor
@@ -61,7 +63,7 @@ MENU(rotator_ctrl_submenu,"Rotator control",doNothing,noEvent,noStyle
 );
 
 
-uint16_t predict_sat_catn=0;
+uint16_t predict_sat_catn=NOAA15_CATN;
 CHOOSE(predict_sat_catn,choose_track_sat_menu,"Choose sat",doNothing,noEvent,noStyle
   ,VALUE("NOAA 15",NOAA15_CATN,doNothing,noEvent)
   ,VALUE("NOAA 18",NOAA18_CATN,doNothing,noEvent)
@@ -69,7 +71,7 @@ CHOOSE(predict_sat_catn,choose_track_sat_menu,"Choose sat",doNothing,noEvent,noS
   ,VALUE("ISS",ISS_CATN,doNothing,noEvent)
 );
 
-uint8_t n_predictions;
+uint8_t n_predictions = 1;
 
 
 result menu_predict();
@@ -77,7 +79,7 @@ result menu_predict();
 MENU(predictor_submenu,"Prediction engine",doNothing,noEvent,noStyle
   ,SUBMENU(choose_track_sat_menu)
   ,FIELD(min_el,"Min el"," deg", 0,90,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
-  ,FIELD(n_predictions,"N predictions","", 0,10,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(n_predictions,"N predictions","", 1,10,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,OP("Predict!", menu_predict, enterEvent)
   ,EXIT("<Back")
 );
@@ -105,21 +107,27 @@ MENU_OUTPUTS(out, MAX_DEPTH, U8G2_OUT(u8g2, colors, fontX, fontY, offsetX, offse
 
 NAVROOT(nav, mainMenu, MAX_DEPTH, in, out);
 
-result show_prediction(menuOut &o, idleEvent e){
-    o.setCursor(0, 0);
-    o.print("asdasdasd");
-    return proceed;
+void show_prediction(int i){
+  u8g2.clearDisplay();
+  
+  u8g2.setCursor(10,10);
+  u8g2.print("Prediction");
+  u8g2.nextPage();
+  
+    
 }
 
+
 result menu_predict(){
-    uint8_t i;
-    for(i = 0; i<3; i++){
-        nav.idleOn(show_prediction);
-        // delay(100);  
-    }
+  u8g2.setDrawColor(0);
+  u8g2.setFontMode(1);
+
+  predict_eng_init_menu(predict_sat_catn);
+  predict_eng_show_menu(n_predictions, min_el);
     
-    return proceed;
-    }
+  return proceed;
+}
+
 
 result alert(menuOut &o, idleEvent e)
 {
@@ -179,9 +187,17 @@ config myOptions('*', '-', myCodes, false);
 void initOLED()
 {
     options = &myOptions;
-    Wire.begin();
+    // Wire.begin();
     u8g2.begin();
     u8g2.setFont(fontName);
+    u8g2.setDrawColor(2);
+    u8g2.setFontMode(1);
+    // u8g2.drawBox(5,5, U8_Width, U8_Height);
+    // while(u8g2.nextPage());
+    u8g2.drawStr(10,30, "asdasdasdasdasdasd");
+    // u8g2.print("asdasdasdasdasdasd");
+    
+
     
 }
 

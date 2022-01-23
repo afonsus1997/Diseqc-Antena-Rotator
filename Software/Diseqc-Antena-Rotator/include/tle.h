@@ -10,5 +10,15 @@
 #define NOAA20_CATN 43013
 #define ISS_CATN 25544
 
+typedef struct tle_s {
+   String satname;
+   uint16_t CATNR;
+   String tle1;
+   String tle2; 
+} tle_t; 
+
+#define N_MAX_TLE 10
+
+
 
 #endif

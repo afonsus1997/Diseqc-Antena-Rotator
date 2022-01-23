@@ -1,5 +1,7 @@
 #include <Arduino.h>
 #include "../include/main.h"
+#define CONFIG_ESP_MAIN_TASK_STACK_SIZE 5000
+#define CONFIG_FREERTOS_IDLE_TASK_STACKSIZE 5000
 
 char *ssid = "Disecq Rotator";
 char *password = "1234567890";

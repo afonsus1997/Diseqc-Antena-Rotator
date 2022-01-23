@@ -15,7 +15,8 @@
 
 #include <Wire.h>
 
-
+#define fontX 7
+#define fontY 16
 
 void initOLED();
 void menuLoop();
