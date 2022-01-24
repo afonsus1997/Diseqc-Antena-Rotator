@@ -7,4 +7,6 @@
 
 void init_tracker();
 
+void draw_orbit(unsigned long pass_start, unsigned long pass_end, uint8_t cx, uint8_t cy, uint8_t size);
+
 #endif

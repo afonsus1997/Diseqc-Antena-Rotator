@@ -1,11 +1,15 @@
 #include "../include/tracker.h"
 #include "../include/tle.h"
 #include "../include/lcd_menu.h"
+#include <math.h>
 
 
 #include <Sgp4.h>
 #include <Ticker.h>
 #include <time.h>
+
+#define N_ORBIT_POINTS 50
+
 //max tle size = 70
 
 extern uint8_t getSatIndex(uint16_t CATNR);
@@ -148,6 +152,8 @@ void predict_eng_show_menu(int many, int minEl){
 
     bool error;
 
+    
+
     for (int i = 0; i < many; i++)
     {
         error = sat.nextpass(&overpass, 20); //search for the next overpass, if there are more than 20 maximums below the horizon it returns false
@@ -216,6 +222,88 @@ void predict_eng_show_menu(int many, int minEl){
     //         Serial.println("Prediction error");
         }
         delay(1000);
+
+        draw_orbit(getUnixFromJulian(overpass.jdstart), getUnixFromJulian(overpass.jdstop), 64, 32, 30);
+        delay(1000);
+
+
+
     }
 
+}
+
+void draw_orbit(unsigned long pass_start, unsigned long pass_end, uint8_t cx, uint8_t cy, uint8_t size){
+    
+    uint16_t step = (pass_end - pass_start)/N_ORBIT_POINTS;
+
+    u8g2.setDrawColor(2);
+    u8g2.setFontMode(1);
+    u8g2.clearDisplay();
+    u8g2.drawCircle(cx, cy, size);
+    u8g2.drawCircle(cx, cy, size/2);
+    u8g2.drawLine(cx, cy-size, cx, size+cy);
+    u8g2.drawLine(cx-size, cy, size+cx, cy);
+
+    float XTheta, YTheta, XPhi, YPhi, X, Y;
+
+    // Serial.println("Pass orbit: ");
+    uint8_t i;
+    uint8_t orbit_points_x[N_ORBIT_POINTS], orbit_points_y[N_ORBIT_POINTS];
+    for(i = 0; i<N_ORBIT_POINTS; i++){
+        sat.findsat(pass_start + i*step);
+        // Serial.println("El: " + String( sat.satEl) + " Az: " + String( sat.satAz));
+        X = cos((sat.satEl*M_PI)/180) * sin((sat.satAz*M_PI)/180) * size;
+        Y = - cos((sat.satAz*M_PI)/180) * cos((sat.satEl*M_PI)/180) * size;
+        // Serial.println("X: " + String(X) + " Y: " + String(Y));
+        orbit_points_x[i] = (uint8_t)X + cx;
+        orbit_points_y[i] = (uint8_t)Y + cy;
+    }
+
+    for(i=0; i<N_ORBIT_POINTS; i++){
+        u8g2.drawPixel(orbit_points_x[i], orbit_points_y[i]);
+    }
+     while(u8g2.nextPage());
+}
+
+void track_eng_menu(int minEl){
+
+    configTime(0, 0, ntpServer);
+    time_t now;
+    struct tm timeinfo;
+    getLocalTime(&timeinfo);
+
+
+    unixtime = 1643043600;//time(&now);
+
+    unsigned long pass_start, pass_end, step;
+    passinfo overpass;                //structure to store overpass info
+    sat.initpredpoint(unixtime, minEl);
+    sat.nextpass(&overpass, 20);
+
+    pass_start = getUnixFromJulian(overpass.jdstart);
+    pass_end = getUnixFromJulian(overpass.jdstop);
+
+    draw_orbit(pass_start, pass_end, 64, 32, 32);
+
+    // Serial.println("Start epoch: " + String(getUnixFromJulian(overpass.jdstart)));
+    // Serial.println("Stop epoch: " + String(getUnixFromJulian(overpass.jdstop)));
+
+    sat.findsat(unixtime);
+
+    invjday(sat.satJd , timezone,true, year, mon, day, hr, minute, sec);
+    // Serial.println(String(day) + '/' + String(mon) + '/' + String(year) + ' ' + String(hr) + ':' + String(minute) + ':' + String(sec));
+    // Serial.println("azimuth = " + String( sat.satAz) + " elevation = " + String(sat.satEl) + " distance = " + String(sat.satDist));
+    // Serial.println("latitude = " + String( sat.satLat) + " longitude = " + String( sat.satLon) + " altitude = " + String( sat.satAlt));
+
+    switch(sat.satVis){
+        case -2:
+            Serial.println("Visible : Under horizon");
+            break;
+        case -1:
+            Serial.println("Visible : Daylight");
+            break;
+        default:
+            Serial.println("Visible : " + String(sat.satVis));   //0:eclipsed - 1000:visible
+            break;
+        }
 }

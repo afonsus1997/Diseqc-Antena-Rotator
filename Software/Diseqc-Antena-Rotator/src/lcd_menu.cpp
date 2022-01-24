@@ -4,6 +4,7 @@ extern uint8_t min_el;
 extern void predict_eng_init_menu(uint16_t CATN);
 extern void predict_eng_show_menu(int many, int minEl);
 extern uint8_t getSatIndex(uint16_t CATNR);
+extern void track_eng_menu(int minEl);
 
 #define fontName u8g2_font_7x13_mf
 
@@ -64,7 +65,7 @@ MENU(rotator_ctrl_submenu,"Rotator control",doNothing,noEvent,noStyle
 
 
 uint16_t predict_sat_catn=NOAA15_CATN;
-CHOOSE(predict_sat_catn,choose_track_sat_menu,"Choose sat",doNothing,noEvent,noStyle
+CHOOSE(predict_sat_catn,choose_predict_sat_menu,"Sat: ",doNothing,noEvent,noStyle
   ,VALUE("NOAA 15",NOAA15_CATN,doNothing,noEvent)
   ,VALUE("NOAA 18",NOAA18_CATN,doNothing,noEvent)
   ,VALUE("NOAA 19",NOAA19_CATN,doNothing,noEvent)
@@ -77,12 +78,32 @@ uint8_t n_predictions = 1;
 result menu_predict();
 
 MENU(predictor_submenu,"Prediction engine",doNothing,noEvent,noStyle
-  ,SUBMENU(choose_track_sat_menu)
+  ,SUBMENU(choose_predict_sat_menu)
   ,FIELD(min_el,"Min el"," deg", 0,90,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,FIELD(n_predictions,"N predictions","", 1,10,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,OP("Predict!", menu_predict, enterEvent)
   ,EXIT("<Back")
 );
+
+result menu_track();
+
+uint16_t track_sat_catn=NOAA15_CATN;
+CHOOSE(track_sat_catn,choose_track_sat_menu,"Sat: ",doNothing,noEvent,noStyle
+  ,VALUE("NOAA 15",NOAA15_CATN,doNothing,noEvent)
+  ,VALUE("NOAA 18",NOAA18_CATN,doNothing,noEvent)
+  ,VALUE("NOAA 19",NOAA19_CATN,doNothing,noEvent)
+  ,VALUE("ISS",ISS_CATN,doNothing,noEvent)
+);
+
+MENU(track_submenu,"Tracking",doNothing,noEvent,noStyle
+  ,SUBMENU(choose_track_sat_menu)
+  ,FIELD(min_el,"Min el"," deg", 0,90,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,OP("Track!", menu_track, enterEvent)
+  ,EXIT("<Back")
+);
+
+
+
 
 
 
@@ -90,10 +111,10 @@ MENU(mainMenu, "Main menu"\
     ,doNothing
     ,noEvent
     ,wrapStyle
-    ,OP("Op1", optest, enterEvent)
-    ,OP("Op2", doNothing, noEvent)
+    ,SUBMENU(track_submenu)
     ,SUBMENU(rotator_ctrl_submenu)
     ,SUBMENU(predictor_submenu)
+    ,OP("Orbitron USB DDE", doNothing, noEvent)
     ,SUBMENU(wifi_submenu)
     ,EXIT("<Exit"));
 
@@ -124,6 +145,16 @@ result menu_predict(){
 
   predict_eng_init_menu(predict_sat_catn);
   predict_eng_show_menu(n_predictions, min_el);
+    
+  return proceed;
+}
+
+result menu_track(){
+  u8g2.setDrawColor(0);
+  u8g2.setFontMode(1);
+
+  predict_eng_init_menu(track_sat_catn);
+  track_eng_menu(min_el);
     
   return proceed;
 }
