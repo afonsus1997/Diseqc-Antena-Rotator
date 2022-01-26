@@ -7,11 +7,16 @@
 
 #include <menu.h>
 #include <menuIO/u8g2Out.h>
-// #include <menuIO/encoderIn.h>
-// #include <menuIO/keyIn.h>
+#include <menuIO/encoderIn.h>
+#include <menuIO/keyIn.h>
 #include <menuIO/chainStream.h>
 #include <menuIO/serialOut.h>
 #include <menuIO/serialIn.h>
+
+// #include <streamFlow.h>
+// #include <ClickEncoder.h>
+// Using this library: https://github.com/soligen2010/encoder.git
+// #include <menuIO/clickEncoderIn.h>
 
 #include <Wire.h>
 

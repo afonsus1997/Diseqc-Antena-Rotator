@@ -1,0 +1,6 @@
+Added Component: Designator=U6(OLED_MODULE)
+Added Pin To Net: NetName=SDA_ESP Pin=U6-1
+Added Pin To Net: NetName=SCL_ESP Pin=U6-2
+Added Pin To Net: NetName=VCC3V3 Pin=U6-3
+Added Pin To Net: NetName=GND Pin=U6-4
+Added Member To Class: ClassName=Sheet1 Member=Component U6 OLED_MODULE

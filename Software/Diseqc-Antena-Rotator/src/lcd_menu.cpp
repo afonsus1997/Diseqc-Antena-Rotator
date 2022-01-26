@@ -18,6 +18,15 @@ extern void track_eng_menu(int minEl);
 U8G2_SSD1306_128X64_VCOMH0_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, 22, 21);
 // U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R2, U8X8_PIN_NONE, LCD_SCL, LCD_SDA);
 
+  #define encA    15
+  #define encB    4
+  #define encBtn  17
+
+#include <AiEsp32RotaryEncoder.h>
+AiEsp32RotaryEncoder rotaryEncoder = AiEsp32RotaryEncoder(encA, encB, encBtn, -1, 4);
+
+
+
 
 #define USE_SSD1306
 using namespace Menu;
@@ -120,9 +129,19 @@ MENU(mainMenu, "Main menu"\
 
 #define MAX_DEPTH 4
 
+// ClickEncoder clickEncoder = ClickEncoder(encA, encB, encBtn, 4);
+// ClickEncoderStream encStream(clickEncoder, 1);
+
 serialIn serial(Serial);
+
+// menuIn* inputsList[]={&encButton,&serial};
+// chainStream<2> in(inputsList);//1 is the number of inputs
+
+// MENU_INPUTS(in,&encStream,&encButton,&serial);
+// MENU_INPUTS(in, &encStream, &serial); // &encButton,
+
 MENU_INPUTS(in, &serial);
-// MENU_INPUTS(in,&encStream,&encButton);//,&serial);
+
 
 MENU_OUTPUTS(out, MAX_DEPTH, U8G2_OUT(u8g2, colors, fontX, fontY, offsetX, offsetY, {0, 0, U8_Width / fontX, U8_Height / fontY}), SERIAL_OUT(Serial));
 
@@ -215,24 +234,79 @@ const navCodesDef myCodes = {
 
 config myOptions('*', '-', myCodes, false);
 
+uint8_t lastEnc = 0;
+uint8_t nowEnc = 0;
+
+void rotary_onButtonClick()
+{
+	static unsigned long lastTimePressed = 0;
+	//ignore multiple press in that time milliseconds
+	if (millis() - lastTimePressed < 500)
+	{
+		return;
+	}
+	lastTimePressed = millis();
+	Serial.print("button pressed ");
+	Serial.print(millis());
+	Serial.println(" milliseconds after restart");
+  nav.doNav(navCmd(enterCmd));
+}
+
+
+void rotary_loop()
+{
+	//dont print anything unless value changed
+	if (rotaryEncoder.encoderChanged())
+	{
+		// Serial.print("Value: ");
+    nowEnc = rotaryEncoder.readEncoder();
+    if(nowEnc >= lastEnc){
+      nav.doNav(navCmd(upCmd));
+		  // Serial.println("up!");
+    }
+    else if(nowEnc <= lastEnc){
+      nav.doNav(navCmd(downCmd));
+		  // Serial.println("Down!");
+    }
+     lastEnc =  nowEnc;
+	}
+	if (rotaryEncoder.isEncoderButtonClicked())
+	{
+		rotary_onButtonClick();
+	}
+}
+
+void IRAM_ATTR readEncoderISR()
+{
+	rotaryEncoder.readEncoder_ISR();
+}
+
+
 void initOLED()
 {
-    options = &myOptions;
-    // Wire.begin();
-    u8g2.begin();
-    u8g2.setFont(fontName);
-    u8g2.setDrawColor(2);
-    u8g2.setFontMode(1);
-    // u8g2.drawBox(5,5, U8_Width, U8_Height);
-    // while(u8g2.nextPage());
-    u8g2.drawStr(10,30, "asdasdasdasdasdasd");
-    // u8g2.print("asdasdasdasdasdasd");
+  options = &myOptions;
+  // Wire.begin();
+  u8g2.begin();
+  u8g2.setFont(fontName);
+  u8g2.setDrawColor(2);
+  u8g2.setFontMode(1);
+  // u8g2.drawBox(5,5, U8_Width, U8_Height);
+  // while(u8g2.nextPage());
+  u8g2.drawStr(10,30, "asdasdasdasdasdasd");
+  // u8g2.print("asdasdasdasdasdasd");
+  rotaryEncoder.begin();
+
+  rotaryEncoder.setup(readEncoderISR);
+  bool circleValues = false;
+	// rotaryEncoder.setBoundaries(0, 5, circleValues);
+  rotaryEncoder.setAcceleration(250);
     
 
     
 }
 
 void menuLoop(){
+  rotary_loop();
     nav.doInput();
   // digitalWrite(LEDPIN, ledCtrl);
     if (nav.changed(0)) {//only draw if menu changed for gfx device

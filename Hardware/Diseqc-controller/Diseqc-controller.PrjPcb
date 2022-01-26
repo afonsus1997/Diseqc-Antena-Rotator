@@ -71,7 +71,7 @@ ClassGenCCAutoRoomEnabled=1
 ClassGenNCAutoScope=None
 DItemRevisionGUID=
 GenerateClassCluster=0
-DocumentUniqueId=
+DocumentUniqueId=LNOEIOID
 
 [Document3]
 DocumentPath=Conn_TE_5-1634552-1_eec_0.PcbLib
