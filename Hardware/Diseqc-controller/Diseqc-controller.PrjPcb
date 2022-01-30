@@ -30,7 +30,7 @@ ReportSuppressedErrorsInMessages=0
 FSMCodingStyle=eFMSDropDownList_OneProcess
 FSMEncodingStyle=eFMSDropDownList_OneHot
 IsProjectConflictPreventionWarningsEnabled=0
-OutputPath=
+OutputPath=Project Outputs for Diseqc-controller
 LogFolderPath=
 ManagedProjectGUID=
 IncludeDesignInRelease=0
@@ -141,8 +141,105 @@ DItemRevisionGUID=
 GenerateClassCluster=0
 DocumentUniqueId=EYOKSONO
 
+[Document7]
+DocumentPath=Job1.OutJob
+AnnotationEnabled=1
+AnnotateStartValue=1
+AnnotationIndexControlEnabled=0
+AnnotateSuffix=
+AnnotateScope=All
+AnnotateOrder=-1
+DoLibraryUpdate=1
+DoDatabaseUpdate=1
+ClassGenCCAutoEnabled=1
+ClassGenCCAutoRoomEnabled=1
+ClassGenNCAutoScope=None
+DItemRevisionGUID=
+GenerateClassCluster=0
+DocumentUniqueId=
+
 [GeneratedDocument1]
 DocumentPath=Project Outputs for Diseqc-controller\Design Rule Check - PCB1.html
+DItemRevisionGUID=
+
+[GeneratedDocument2]
+DocumentPath=..\Outputs\GERBERs\PCB1-RoundHoles.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument3]
+DocumentPath=..\Outputs\GERBERs\PCB1-SlotHoles.TXT
+DItemRevisionGUID=
+
+[GeneratedDocument4]
+DocumentPath=..\Outputs\GERBERs\PCB1.DRR
+DItemRevisionGUID=
+
+[GeneratedDocument5]
+DocumentPath=Project Outputs for Free Documents\Gerber\PCB1.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument6]
+DocumentPath=..\Outputs\GERBERs\PCB1.EXTREP
+DItemRevisionGUID=
+
+[GeneratedDocument7]
+DocumentPath=..\Outputs\GERBERs\PCB1.GBL
+DItemRevisionGUID=
+
+[GeneratedDocument8]
+DocumentPath=..\Outputs\GERBERs\PCB1.GBO
+DItemRevisionGUID=
+
+[GeneratedDocument9]
+DocumentPath=..\Outputs\GERBERs\PCB1.GBP
+DItemRevisionGUID=
+
+[GeneratedDocument10]
+DocumentPath=..\Outputs\GERBERs\PCB1.GBS
+DItemRevisionGUID=
+
+[GeneratedDocument11]
+DocumentPath=..\Outputs\GERBERs\PCB1.GM1
+DItemRevisionGUID=
+
+[GeneratedDocument12]
+DocumentPath=..\Outputs\GERBERs\PCB1.GM2
+DItemRevisionGUID=
+
+[GeneratedDocument13]
+DocumentPath=..\Outputs\GERBERs\PCB1.GTL
+DItemRevisionGUID=
+
+[GeneratedDocument14]
+DocumentPath=..\Outputs\GERBERs\PCB1.GTO
+DItemRevisionGUID=
+
+[GeneratedDocument15]
+DocumentPath=..\Outputs\GERBERs\PCB1.GTP
+DItemRevisionGUID=
+
+[GeneratedDocument16]
+DocumentPath=..\Outputs\GERBERs\PCB1.GTS
+DItemRevisionGUID=
+
+[GeneratedDocument17]
+DocumentPath=..\Outputs\GERBERs\PCB1.LDP
+DItemRevisionGUID=
+
+[GeneratedDocument18]
+DocumentPath=Project Outputs for Free Documents\Gerber\PCB1.REP
+DItemRevisionGUID=
+
+[GeneratedDocument19]
+DocumentPath=..\Outputs\GERBERs\PCB1.REP
+DItemRevisionGUID=
+
+[GeneratedDocument20]
+DocumentPath=Project Outputs for Free Documents\Gerber\PCB1.RUL
+DItemRevisionGUID=
+
+[GeneratedDocument21]
+DocumentPath=..\Outputs\GERBERs\PCB1.RUL
 DItemRevisionGUID=
 
 [Configuration1]
@@ -154,6 +251,9 @@ Variant=[No Variations]
 OutputJobsCount=0
 ContentTypeGUID=CB6F2064-E317-11DF-B822-12313F0024A2
 ConfigurationType=Source
+
+[Generic_EDE]
+OutputDir=Project Outputs for Diseqc-controller
 
 [OutputGroup1]
 Name=Netlist Outputs

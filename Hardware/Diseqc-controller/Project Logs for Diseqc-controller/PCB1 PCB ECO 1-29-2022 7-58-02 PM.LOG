@@ -1,0 +1,36 @@
+Added Component: Designator=TP1(Test POint)
+Added Component: Designator=TP2(Test POint)
+Added Component: Designator=TP3(Test POint)
+Added Component: Designator=TP4(Test POint)
+Added Component: Designator=TP5(Test POint)
+Added Component: Designator=TP6(Test POint)
+Added Component: Designator=TP7(Test POint)
+Added Component: Designator=TP8(Test POint)
+Added Component: Designator=TP9(Test POint)
+Added Component: Designator=TP10(Test POint)
+Added Component: Designator=TP11(Test POint)
+Added Component: Designator=TP12(Test POint)
+Added Pin To Net: NetName=NetD1_1 Pin=TP1-1
+Added Pin To Net: NetName=NetD2_1 Pin=TP2-1
+Added Pin To Net: NetName=VCC Pin=TP3-1
+Added Pin To Net: NetName=VCC3V3 Pin=TP4-1
+Added Pin To Net: NetName=AZ_PIN Pin=TP5-1
+Added Pin To Net: NetName=NetC7_2 Pin=TP6-1
+Added Pin To Net: NetName=NetR10_2 Pin=TP7-1
+Added Pin To Net: NetName=NetR18_1 Pin=TP8-1
+Added Pin To Net: NetName=EL_PIN Pin=TP9-1
+Added Pin To Net: NetName=NetC10_2 Pin=TP10-1
+Added Pin To Net: NetName=NetR20_2 Pin=TP11-1
+Added Pin To Net: NetName=NetR29_1 Pin=TP12-1
+Added Member To Class: ClassName=Sheet1 Member=Component TP1 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP2 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP3 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP4 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP5 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP6 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP7 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP8 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP9 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP10 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP11 Test Point
+Added Member To Class: ClassName=Sheet1 Member=Component TP12 Test Point

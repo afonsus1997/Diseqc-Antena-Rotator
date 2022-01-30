@@ -2,9 +2,10 @@
 
 extern uint8_t min_el;
 extern void predict_eng_init_menu(uint16_t CATN);
-extern void predict_eng_show_menu(int many, int minEl);
+extern void predict_eng_show_menu(int many, int minEl, int min_maxEl, int n_retries);
 extern uint8_t getSatIndex(uint16_t CATNR);
 extern void track_eng_menu(int minEl);
+extern void orbitron_serial_DDE();
 
 #define fontName u8g2_font_7x13_mf
 
@@ -18,7 +19,7 @@ extern void track_eng_menu(int minEl);
 U8G2_SSD1306_128X64_VCOMH0_F_HW_I2C u8g2(U8G2_R0, U8X8_PIN_NONE, 22, 21);
 // U8G2_SSD1306_128X64_NONAME_1_HW_I2C u8g2(U8G2_R2, U8X8_PIN_NONE, LCD_SCL, LCD_SDA);
 
-  #define encA    15
+  #define encA    16
   #define encB    4
   #define encBtn  17
 
@@ -85,10 +86,11 @@ uint8_t n_predictions = 1;
 
 
 result menu_predict();
+uint8_t minMaxEl = 10;
 
 MENU(predictor_submenu,"Prediction engine",doNothing,noEvent,noStyle
   ,SUBMENU(choose_predict_sat_menu)
-  ,FIELD(min_el,"Min el"," deg", 0,90,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
+  ,FIELD(minMaxEl,"Min el"," deg", 0,90,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,FIELD(n_predictions,"N predictions","", 1,10,1,0, Menu::doNothing, Menu::noEvent, Menu::noStyle)
   ,OP("Predict!", menu_predict, enterEvent)
   ,EXIT("<Back")
@@ -113,6 +115,7 @@ MENU(track_submenu,"Tracking",doNothing,noEvent,noStyle
 
 
 
+result menu_orbitron();
 
 
 
@@ -123,7 +126,7 @@ MENU(mainMenu, "Main menu"\
     ,SUBMENU(track_submenu)
     ,SUBMENU(rotator_ctrl_submenu)
     ,SUBMENU(predictor_submenu)
-    ,OP("Orbitron USB DDE", doNothing, noEvent)
+    ,OP("Orbitron USB DDE", menu_orbitron, enterEvent)
     ,SUBMENU(wifi_submenu)
     ,EXIT("<Exit"));
 
@@ -147,6 +150,14 @@ MENU_OUTPUTS(out, MAX_DEPTH, U8G2_OUT(u8g2, colors, fontX, fontY, offsetX, offse
 
 NAVROOT(nav, mainMenu, MAX_DEPTH, in, out);
 
+result menu_orbitron(){
+  orbitron_serial_DDE();
+
+  nav.doOutput(); while(u8g2.nextPage());
+  return proceed;
+}
+
+
 void show_prediction(int i){
   u8g2.clearDisplay();
   
@@ -158,13 +169,16 @@ void show_prediction(int i){
 }
 
 
+
 result menu_predict(){
   u8g2.setDrawColor(0);
   u8g2.setFontMode(1);
 
   predict_eng_init_menu(predict_sat_catn);
-  predict_eng_show_menu(n_predictions, min_el);
-    
+  predict_eng_show_menu(n_predictions, 0, minMaxEl, 255);
+  
+  nav.doOutput(); while(u8g2.nextPage());
+
   return proceed;
 }
 
