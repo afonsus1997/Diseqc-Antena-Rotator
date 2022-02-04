@@ -1,0 +1,25 @@
+Removed Pin From Net: NetName=VCC Pin=AMS1-3
+Added Component: Designator=D5(MCC-SOD123_V)
+Add component (AddParameter): Name = "Datasheet URL"; Value = "http://www.mccsemi.com/up_pdf/B5817W-B5819W(SOD-123).pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Rev. B, 01/2013"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Micro Commercial Components"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.mccsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "2-Pin Small Outline Diode, Body 2.7 x 1.6 mm, Height 1.35 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "SOD123"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package URL"; Value = "http://www.mccsemi.com/up_pdf/1N4448W(SOD-123).pdf"; VariantName = "[No Variations]"
+Added Component: Designator=D6(MCC-SOD123_V)
+Add component (AddParameter): Name = "Datasheet URL"; Value = "http://www.mccsemi.com/up_pdf/B5817W-B5819W(SOD-123).pdf"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Datasheet Version"; Value = "Rev. B, 01/2013"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer"; Value = "Micro Commercial Components"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Manufacturer URL"; Value = "http://www.mccsemi.com/"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Description"; Value = "2-Pin Small Outline Diode, Body 2.7 x 1.6 mm, Height 1.35 mm"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package Reference"; Value = "SOD123"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package URL"; Value = "http://www.mccsemi.com/up_pdf/1N4448W(SOD-123).pdf"; VariantName = "[No Variations]"
+Added Pin To Net: NetName=VCC Pin=D5-1
+Added Pin To Net: NetName=VBus Pin=D6-1
+Added Pin To Net: NetName=NetAMS1_3 Pin=AMS1-3
+Added Pin To Net: NetName=NetAMS1_3 Pin=D5-2
+Added Pin To Net: NetName=NetAMS1_3 Pin=D6-2
+Added Net: Name=NetAMS1_3
+Added Member To Class: ClassName=Sheet1 Member=Component D5 B5819W
+Added Member To Class: ClassName=Sheet1 Member=Component D6 B5819W

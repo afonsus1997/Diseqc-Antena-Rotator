@@ -1,0 +1,10 @@
+Removed Pin From Net: NetName=JTAG_RST Pin=C13-1
+Removed Pin From Net: NetName=GPIO0 Pin=R17-1
+Removed Pin From Net: NetName=JTAG_RST Pin=R17-2
+Removed Pin From Net: NetName=JTAG_RST Pin=R33-1
+Removed Pin From Net: NetName=JTAG_RST Pin=S2-2
+Added Pin To Net: NetName=GPIO0 Pin=C13-1
+Added Pin To Net: NetName=VCC3V3 Pin=R17-1
+Added Pin To Net: NetName=GPIO0 Pin=R17-2
+Added Pin To Net: NetName=GPIO0 Pin=R33-1
+Added Pin To Net: NetName=GPIO0 Pin=S2-2
