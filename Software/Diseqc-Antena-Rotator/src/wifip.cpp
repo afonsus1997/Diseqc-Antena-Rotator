@@ -18,13 +18,16 @@ File file;
 
 int getTLE(String CATNR)
 {
+    Serial.println("TLE web request");
     String payload;
-    http.begin("https://celestrak.com/satcat/tle.php?CATNR=" + String(CATNR)); //Specify the URL
+    //https://celestrak.com/NORAD/elements/gp.php?CATNR=25544&FORMAT=TLE
+    http.begin("https://celestrak.com/NORAD/elements/gp.php?CATNR=" + CATNR + "&FORMAT=TLE"); //Specify the URL
+    http.setTimeout(5000);
     int httpCode = http.GET();                                        //Make the request
     if (httpCode > 0)
     { //Check for the returning code
         payload = http.getString();
-        Serial.println(httpCode);
+        // Serial.println(payload);
         // Serial.println(payload.substring(0));
     }
     else
@@ -41,16 +44,16 @@ int getTLE(String CATNR)
     head = payload.indexOf('\n');
     satname_s = payload.substring(0, head-1); //from -> to
     payload = payload.substring(head+1);
-    // Serial.println(satname_s);
+    Serial.println(satname_s);
 
     head = payload.indexOf('\n');
     tle1_s = payload.substring(0, head-1);
     payload = payload.substring(head+1);
-    // Serial.println(tle1_s);
+    Serial.println(tle1_s);
 
     head = payload.indexOf('\n');
     tle2_s = payload.substring(0, head-1);
-    // Serial.println(tle2_s);
+    Serial.println(tle2_s);
     
     satname_s.toCharArray(satname, satname_s.length());
     tle1_s.toCharArray(tle1, tle1_s.length());

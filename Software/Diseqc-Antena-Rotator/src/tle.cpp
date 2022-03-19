@@ -1,8 +1,10 @@
 #include "../include/tle.h"
 
 
+extern int getTLE(String CATNR);
 
-
+#define N_DEFAULT_SATS 5
+uint16_t default_sats[N_DEFAULT_SATS] = {NOAA15_CATN, NOAA18_CATN, NOAA20_CATN, ISS_CATN};
 
 tle_t satList[N_MAX_TLE];
 uint8_t n_LoadedTLEs;
@@ -51,9 +53,14 @@ void add_tle_to_list(String satname, uint16_t CATNR, String tle1_s, String tle2_
     }else{
         Serial.println("Sat not found, adding it to the list.");
         satList[n_LoadedTLEs].CATNR = CATNR;
+        Serial.println(String(CATNR));
         satList[n_LoadedTLEs].satname = satname;
+        Serial.println(satname);
         satList[n_LoadedTLEs].tle1 = tle1_s;
+        Serial.println(tle1_s);
         satList[n_LoadedTLEs].tle2 = tle2_s;
+        Serial.println(tle2_s);
+
         n_LoadedTLEs++;
         Serial.println("List updated");
         write_tles_to_file();
@@ -68,7 +75,7 @@ uint8_t get_tles_from_file(){
     file.close();
     file = SPIFFS.open("/tle.txt", FILE_READ);
     String line;
-    uint8_t i;
+    uint8_t i = 0;
     char nc;
     for(i = 0; i < N_MAX_TLE; i++){
         nc = file.peek();
@@ -77,10 +84,10 @@ uint8_t get_tles_from_file(){
             break;
         }
         else{
-            // Serial.println("peeked char " + String(nc));
+            Serial.println("peeked char " + String(nc));
             line = file.readStringUntil('\n');
             satList[i].satname = line;
-            // Serial.println(satList[i].satname);
+            Serial.println(satList[i].satname);
         }
 
         line = file.readStringUntil('\n');
@@ -96,7 +103,8 @@ uint8_t get_tles_from_file(){
         // Serial.println(satList[i].tle2);
 
     }
-    
+
+    Serial.println(i);
     file.close();
     return i;
 }
@@ -117,4 +125,6 @@ uint8_t getSatIndex(uint16_t CATNR){
 
 void initTLEs(){
     n_LoadedTLEs = get_tles_from_file();
+    
 }
+
